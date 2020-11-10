@@ -1,0 +1,31 @@
+name: Flutter Web
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build_and_deploy:
+    name: Build Web
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v1
+      - name: setting environment
+        uses: subosito/flutter-action@v1
+        with:
+          channel: 'beta'
+      - name: flutter build
+        run: |
+             cd myapp
+             flutter config --enable-web
+             flutter pub get
+             flutter build web --release
+      - name: test
+        run: flutter test test/*
+      - name: deploy to gh-pages
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: myapp/build/web # The folder the action should deploy.
+          CLEAN: true # Automatically remove deleted files from the deploy branch
