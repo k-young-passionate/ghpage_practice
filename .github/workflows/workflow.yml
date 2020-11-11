@@ -16,7 +16,6 @@ jobs:
           channel: 'beta'
       - name: flutter build
         run: |
-             cd myapp
              flutter channel beta
              flutter upgrade
              flutter config --enable-web
