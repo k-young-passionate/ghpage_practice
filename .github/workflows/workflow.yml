@@ -13,7 +13,7 @@ jobs:
       - name: setting environment
         uses: subosito/flutter-action@v1
         with:
-          channel: 'stable'
+          channel: 'dev'
       - name: flutter build
         run: |
              flutter config --enable-web
