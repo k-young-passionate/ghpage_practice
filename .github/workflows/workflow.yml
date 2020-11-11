@@ -12,6 +12,8 @@ jobs:
         uses: subosito/flutter-action@v1
         with:
           channel: 'dev'
+      - name: check
+        run: ls
       - name: flutter build
         run: |
              flutter config --enable-web
