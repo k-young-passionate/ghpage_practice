@@ -13,10 +13,12 @@ jobs:
       - name: setting environment
         uses: subosito/flutter-action@v1
         with:
-          channel: 'dev'
+          channel: 'beta'
       - name: flutter build
         run: |
              cd myapp
+             flutter channel beta
+             flutter upgrade
              flutter config --enable-web
              flutter pub get
              flutter build web --release
